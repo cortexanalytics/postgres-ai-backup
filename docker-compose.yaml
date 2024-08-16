@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+  dblab_server:
+    image: postgresai/dblab-server:3.5.0
+    container_name: dblab_server
+    privileged: true
+    labels:
+      - dblab_control
+    environment:
+      DOCKER_API_VERSION: 1.39
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/lib/dblab:/var/lib/dblab/:rshared
+      - ./server.yml:/home/dblab/configs/server.yml
+      - ~/.dblab/engine/meta:/home/dblab/meta
+      - ~/.dblab/engine/logs:/home/dblab/logs
+    ports:
+      - "2345:2345"
+
