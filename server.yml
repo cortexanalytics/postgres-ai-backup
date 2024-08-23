@@ -18,7 +18,7 @@ server:
   #
   # Database Lab Engine can be running with an empty verification token, which is not recommended.
   # In this case, the DLE API and the UI application will not require any credentials.
-  verificationToken: ""
+  verificationToken: "dd39e9ca1da108ec7031e0e506e80ac1cc708b68ac1dd1b2161955f78fbb45ac"
 
 
   # HTTP server port. Default: 2345.
@@ -37,7 +37,7 @@ embeddedUI:
   # Host or IP address, from which the embedded UI container accepts HTTP connections.
   # By default, use a loop-back to accept only local connections.
   # The empty string means "all available addresses".
-  host: "0.0.0.0"
+  host: "dblab.cortexdev.cortexanalytics.com"
 
   # HTTP port of the UI application. Default: 2346.
   port: 2346
@@ -57,7 +57,7 @@ global:
     username: postgres
 
     # Default database name.
-    dbname: 
+    dbname: cortex_audit
 
 # Manages filesystem pools (in the case of ZFS) or volume groups.
 poolManager:
@@ -212,8 +212,8 @@ retrieval:
             # Database connection parameters.
             # Currently, only password can be specified via environment variable (PGPASSWORD),
             # everything else needs to be specified here.
-            dbname: 
-            host: 
+            dbname: cortex_audit
+            host: cortex-postgresql-dev.cgwiej49vfdx.eu-central-1.rds.amazonaws.com
             port: 5432
             username: postgres
 
@@ -355,14 +355,14 @@ cloning:
   # Host that will be specified in database connection info for all clones
   # Use public IP address if database connections are allowed from outside
   # This value is only used to inform users about how to connect to database clones
-  accessHost: "localhost"
+  accessHost: "dblab.cortexdev.cortexanalytics.com"
 
   # Automatically delete clones after the specified minutes of inactivity.
   # 0 - disable automatic deletion.
   # Inactivity means:
   #   - no active sessions (queries being processed right now)
   #   - no recently logged queries in the query log
-  maxIdleMinutes: 120
+  maxIdleMinutes: 240
 
 diagnostic:
   logsRetentionDays: 7
